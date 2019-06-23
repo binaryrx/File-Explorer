@@ -1,5 +1,5 @@
 {
-	"name": "Metropolic",
+	"name": "file-explorer",
 	"version": "1.0.0",
 	"description": "",
 	"main": "./dist/js/script.js",
@@ -10,7 +10,7 @@
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "git@bitbucket.org:klogic/metropolic_landingpage.git"
+		"url": "https://github.com/binaryrx/File-Explorer"
 	},
 	"devDependencies": {
 		"browser-sync": "^2.26.7",
