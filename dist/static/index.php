@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Page Title</title>
+    <title>page_title</title>
     <meta name="description" content="Stopwatch App">
     <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1">
     <!-- Font Awesome -->

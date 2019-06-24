@@ -31,25 +31,43 @@ const respond = (request,response) => {
 
     //can we find something in fullStaticPath?
     if(!fs.existsSync(fullStaticPath)){
+        //no: send '404:File not Found!'
         console.log(`${fullStaticPath} does not exist`);
         response.write('404 File not found!');
         response.end();
-    }else{
-        response.write('File found!');
-        response.end();
+        return false;
     }
-        
-        //no: send '404:File not Found!'
+
 
         //We found something
         //is it a file or directory
-
+        let stats; 
+        try{
+            stats = fs.lstatSync(fullStaticPath);
+            
+        }catch(e){
+            console.log(`lstatSync Error: ${e}`);
+        }
             //it is a directory:
-                //get content from the template server.html
+            if(stats.isDirectory()){
+
+             //get content from the template index.php
+                let data = fs.readFileSync(path.join(staticBasePath,'index.php'), 'utf-8');
                 //build the page title
+                let pathElements = pathname.split('/').reverse();
+                pathElements = pathElements.filter(element => element !== '');//filter out empty strings
+
+                const folderName = pathElements[0];
+                console.log(folderName);
+                data = data.replace('page_title',folderName);//replace page title with folder title
                 //build breadcrumbs
                 //build table rows(main_content)
                 //print data to the webpage
+                response.statusCode = 200;
+                response.write(data);
+                response.end();
+            }
+               
 
             //it is not a directory and not a file either
                 //send: 401: Access Denied
