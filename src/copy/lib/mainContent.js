@@ -2,6 +2,10 @@
 const fs = require ('fs');
 const path = require('path');
 
+//require files
+const calculateDirSize = require('./calculateDirSize');
+const calculateFileSize = require('./calculateFileSize');
+
 const buildMainContent = (fullStaticPath,pathname) => {
     let mainContent = '';
     let items;
@@ -20,10 +24,33 @@ const buildMainContent = (fullStaticPath,pathname) => {
     items.forEach(item =>{
         //link
         const link = path.join(pathname,item)
+        
+        //icon
+        let itemDetails = {};
+        let icon, stats;
+        //get stats of the item
+        const itemFullStaticPath = path.join(fullStaticPath,item);
+        try{
+            itemDetails.stats = fs.statSync(itemFullStaticPath); 
+        }catch(e){
+            console.log(`statSync error: ${e}`);
+            mainContent = `<div class="alert alert-danger">Internal Server Error</div>`;
+            return false;
+        }
+
+        if(itemDetails.stats.isDirectory()){
+            itemDetails.icon = '<ion-icon name="folder"></ion-icon>';
+            [itemDetails.size,itemDetails.sizeBytes] = calculateDirSize(itemFullStaticPath);
+
+        }else if(itemDetails.stats.isFile()){
+            itemDetails.icon = '<ion-icon name="document"></ion-icon>';
+            // [itemDetails.size,itemDetails.sizeBytes] = calculateFileSize();
+        }
+
         mainContent += `
         <tr>
-            <td><a href="${link}">${item}</a></td>
-            <td>100M</td>
+            <td>${itemDetails.icon}<a href="${link}">${item}</a></td>
+            <td>${itemDetails.size}</td>
             <td>23/06/2019,
             10:30:19 PM</td>
         </tr>`;

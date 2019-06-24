@@ -57,8 +57,7 @@
       </tr>
     </thead>
     <tbody>
-      mainContent      
-
+      mainContent
     </tbody>
   </table>
 </div>

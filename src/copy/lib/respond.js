@@ -6,6 +6,7 @@ const fs = require('fs');
 const buildBreadcrumb = require('./breadcrumb');
 const buildMainContent = require('./mainContent');
 
+
 //static base path : location of your static foler
 const staticBasePath = path.join(__dirname, '..','static');
 // console.log(staticBasePath);
