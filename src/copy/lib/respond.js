@@ -1,20 +1,44 @@
 //require node modules
-
+const url = require('url');
+const path = require('path');
+const fs = require('fs');
 //file imports
 
 //static base path : location of your static foler
+const staticBasePath = path.join(__dirname, '..','static');
+// console.log(staticBasePath);
+
 
 //respond to a request
 //following is function passed to createServer used to create the server
 
 const respond = (request,response) => {
-    console.log('something');
+    
+
     //before working with the pahname you need to decode it.
+    let pathname = url.parse(request.url, true).pathname;//get your pathname
+    
+
+    //if favicon.ico stop
+    if(pathname === '/favicon.ico'){
+        return false;
+    }
+
+    pathname = decodeURIComponent(pathname);
 
     //get the corresponding full static path located in the static folder
+    const fullStaticPath = path.join(staticBasePath,pathname);
 
     //can we find something in fullStaticPath?
-
+    if(!fs.existsSync(fullStaticPath)){
+        console.log(`${fullStaticPath} does not exist`);
+        response.write('404 File not found!');
+        response.end();
+    }else{
+        response.write('File found!');
+        response.end();
+    }
+        
         //no: send '404:File not Found!'
 
         //We found something
