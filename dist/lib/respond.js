@@ -3,6 +3,7 @@ const url = require('url');
 const path = require('path');
 const fs = require('fs');
 //file imports
+const buildBreadcrumb = require('./breadcrumb');
 
 //static base path : location of your static foler
 const staticBasePath = path.join(__dirname, '..','static');
@@ -60,7 +61,10 @@ const respond = (request,response) => {
                 const folderName = pathElements[0];
                 console.log(folderName);
                 data = data.replace('page_title',folderName);//replace page title with folder title
+                
                 //build breadcrumbs
+                const breadcrumb = buildBreadcrumb(pathname);
+                data = data.replace('pathname',breadcrumb);
                 //build table rows(main_content)
                 //print data to the webpage
                 response.statusCode = 200;
