@@ -95,6 +95,15 @@ const respond = (request,response) => {
             const fileDetails = {};
             fileDetails.extensionName = path.extname(fullStaticPath);
             console.log(fileDetails.extensionName);
+
+            //file size
+            let stat;
+            try{
+                stat = fs.statSync(fullStaticPath)    
+            }catch(e){
+                console.log(`Error: ${e}`);
+            }
+            fileDetails.size = stat.size;
             
             //get the file mime type and add it to the response header
             //get the file size and add it the response header
@@ -109,6 +118,38 @@ const respond = (request,response) => {
 
                     //set "Content-Type" for all file types
                     head['Content-Type'] = mime;
+
+                    //pdf file? -> display in browser
+                    if(fileDetails.extensionName === '.pdf'){
+                        head['Content-Disposition'] = 'inline';
+                    }
+                    //audio/video file? ->stram in rangers.
+                    if(RegExp('audio').test(mime)  || RegExp('video').test(mime)){
+                        head['Accept-Ranges'] = 'bytes';
+
+                        const range = request.headers.range;
+                        console.log(`Range: ${range}`);
+                        if(range){
+                            //bytes=3964928-end
+                            //3964928-end
+                            //[3964928,end]
+                            const start_end = range.replace(/bytes=/, "").split('-');
+                            const start = parseInt(start_end[0]);
+                            const end = start_end[1] ? parseInt(start_end[1]) : fileDetails.size -1;
+                            //headers
+                            //Content-Range
+                            head['Content-Range'] = `bytes ${start}-${end}/${fileDetails.size}`;
+                            //Content-Length
+                            head['Content-Length'] = end - start + 1;
+                            statusCode = 206;//straming status code
+
+                            //options
+                            options = {start,end};
+                        }
+                        
+
+                    }
+                    //alll other files stream in a normal way
 
                     //reading the file using fs.promises.readFile
                     // fs.promises.readFile(fullStaticPath, 'utf-8' )
@@ -142,9 +183,8 @@ const respond = (request,response) => {
                     console.log(`Promise Error: ${e}`);
                     return response.end();
                 });
-            //pdf file? -> display in browser
-            //audio/video file? ->stram in rangers.
-            //alll other files stream in a normal way
+
+            
 
 };
 
