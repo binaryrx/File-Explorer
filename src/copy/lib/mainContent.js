@@ -49,7 +49,7 @@ const buildMainContent = (fullStaticPath,pathname) => {
 
         }else if(itemDetails.stats.isFile()){
             itemDetails.icon = '<ion-icon name="document"></ion-icon>';
-            // [itemDetails.size,itemDetails.sizeBytes] = calculateFileSize();
+            [itemDetails.size,itemDetails.sizeBytes] = calculateFileSize(itemDetails.stats);
         }
 
         //When was the file last change(Unix timestamp)

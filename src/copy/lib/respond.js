@@ -74,6 +74,13 @@ const respond = (request,response) => {
                 //print data to the webpage
                 response.statusCode = 200;
                 response.write(data);
+                return response.end();
+            }
+
+            if(!stats.isFile()){
+                response.statusCode = 401;
+                response.write('401: Access Denied!');
+                console.log('not a file');
                 response.end();
             }
                
