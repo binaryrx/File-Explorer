@@ -100,10 +100,41 @@ const respond = (request,response) => {
             //get the file size and add it the response header
             getMimeType(fileDetails.extensionName)
                 .then(mime =>{
-                    console.log(mime);
-                    response.statusCode = 200;
-                    response.write(`StatusCode in getMimeTypeFunction: ${mime}`)
-                    return response.end();
+                    //store headers here
+                    let head = {};
+                    let options = {};
+
+                    //resonse status code
+                    let statusCode = 200;
+
+                    //set "Content-Type" for all file types
+                    head['Content-Type'] = mime;
+
+                    //reading the file using fs.promises.readFile
+                    // fs.promises.readFile(fullStaticPath, 'utf-8' )
+                    //     .then(data =>{
+                    //         response.writeHead(statusCode,head);
+                    //         response.write(data);
+                    //         return response.end();
+                    // }) 
+                    //streamig method:
+                    const fileStream = fs.createReadStream(fullStaticPath,options);
+
+                    //stream chunks to your response object
+                    response.writeHead(statusCode,head);
+                    fileStream.pipe(response);
+
+                    //events
+                    fileStream.on('close', ()=>{
+                        return response.end();
+                    });
+                    fileStream.on('error', (e)=>{
+                        onsole.log(e.code);
+                        response.statusCode = 404;
+                        response.write('404: File Stream error!')
+                        return response.end();
+                    });                    
+
                 })
                 .catch(e =>{
                     response.statusCode = 500;

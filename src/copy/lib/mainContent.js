@@ -61,7 +61,7 @@ const buildMainContent = (fullStaticPath,pathname) => {
 
         mainContent += `
         <tr data-name="${itemDetails.name}" data-size="${itemDetails.sizeBytes}" data-time="${itemDetails.timestamp}">
-            <td>${itemDetails.icon}<a href="${link}">${item}</a></td>
+            <td><a href="${link}">${itemDetails.icon}${item}</a></td>
             <td>${itemDetails.size}</td>
             <td>${itemDetails.date}</td>
         </tr>`;

@@ -22,7 +22,7 @@
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
     
     <!-- STYLE -->
-    <link rel="stylesheet" type="text/css" href="../css/main.min.css" />
+    <link rel="stylesheet" type="text/css" href="main.min.css" />
   
 <script>
   window.mobilecheck = function() {
@@ -74,8 +74,8 @@
     
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <script src="../js/formValidationAjax.min.js"></script>
-    <script src="../js/script.min.js"></script>
+    <!-- <script src="../js/formValidationAjax.min.js"></script> -->
+    <!-- <script src="../js/script.min.js"></script> -->
     <!-- <script src="vendor/owlCarousel/owl.carousel.min.js"></script> -->
     
 

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ביטוח ישיר</title>
+
+    <!-- <link rel="stylesheet" href="/style.967ba849.css"> -->
+    <link rel="stylesheet" href="style.css">
+    <!-- <script src="https://kit.fontawesome.com/7c6882f75f.js"></script> -->
+
+    <!-- Anti-flicker snippet -->
+    <style>.async-hide { opacity: 0 !important}</style>
+    <script>(function (a, s, y, n, c, h, i, d, e) {
+  s.className += ' ' + y;
+  h.start = 1 * new Date();
+
+  h.end = i = function i() {
+    s.className = s.className.replace(RegExp(' ?' + y), '');
+  };
+
+  (a[n] = a[n] || []).hide = h;
+  setTimeout(function () {
+    i();
+    h.end = null;
+  }, c);
+  h.timeout = c;
+})(window, document.documentElement, 'async-hide', 'dataLayer', 4000, {
+  'GTM-M7K39CC': true
+});</script>
+
+    <!-- Google Analytics -->
+    <script>(function (i, s, o, g, r, a, m) {
+  i['GoogleAnalyticsObject'] = r;
+  i[r] = i[r] || function () {
+    (i[r].q = i[r].q || []).push(arguments);
+  }, i[r].l = 1 * new Date();
+  a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+  a.async = 1;
+  a.src = g;
+  m.parentNode.insertBefore(a, m);
+})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+ga('create', 'UA-480563-1', 'auto');
+ga('require', 'GTM-M7K39CC');
+ga('require', 'displayfeatures');
+ga('send', 'pageview');</script>
+    <!-- End Google Tag Analytics -->
+
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TG4W8VL');</script>
+<!-- End Google Tag Manager -->    
+    
+<!-- <script src="style.967ba849.js"></script> -->
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TG4W8VL"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+    
+
+    
+    <header>
+        <img id="logo" src="logo.3f342771.png" alt="ביטוח ישיר">
+        <a href="https://www.555.co.il/clients/contact_us.html" alt="contact us" target="_blank"><img src="images/icons-accessibility.svg"></img></a>
+    </header>
+    <main>
+        <div class="title">
+            <!-- <span class="before"> -->
+                מתחייבים להצעה הזולה ביותר
+        </div>
+        <div class="sub-title">
+            <!-- <strong> -->
+            בביטוח מקיף לרכב* 
+        <!-- </strong> -->
+        </div>
+        <div class="btn" id="dropdown">
+            לקבלת הצעה
+            <img src="arrow-down.dd883d31.png" alt="open">
+        </div>  
+        <div class="dropdown-wrapper hide">
+            <a href="https://www.555.co.il/pearl/~v240220/clientzone/vehicle/proposal.html#/activity/vehicle/1" class="btn dropdown-item">
+                מקיף + חובה
+            </a>
+            <a href="https://www.555.co.il/pearl/~v240220/clientzone/vehicle/proposal.html#/activity/vehicle/2" class="btn dropdown-item">
+                צד ג’ + חובה
+            </a>
+            <!-- <a href="https://www.555.co.il/pearl/~v240220/clientzone/vehicle/proposal.html#/activity/vehicle/3" class="btn dropdown-item">
+                ביטוח חובה
+            </a> -->
+        </div>
+        <a href="tel:035555551" class="btn" id="clickToCall">
+            התקשר לנציג
+            <img src="phone-icon.714353b3.png" alt="call">
+        </a>
+        <!-- <div class="notice">
+            לתשומת ליבך! ניתן להסיר את ביטוח החובה<br>
+            בשלב קבלת המחיר
+        </div> -->
+        <a href="https://www.555.co.il/pearl/~v240220/clientzone/self-services/restore-proposal.html#/restore-proposal" class="prev-offer">
+            <img src="clock-icon.f5242e58.png">
+           <strong>חזרה להצעה קיימת</strong> 
+        </a>
+        <a href="https://www.555.co.il/about/takanon_online.html" target="_blank" class="takanon">
+            *בכפוף לתקנון
+        </a>
+    </main>
+    <!-- <script src="script.04c05cf5.js"></script> -->
+</body>
+
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+
+  <script>
+$( document ).ready(function() {
+    // console.log( "ready!" );
+    $('#dropdown').on('click',function(){
+        // console.log( "ready!" );
+        $('#dropdown').toggleClass('open');
+        $('.dropdown-wrapper').toggleClass('hide');
+        $('#clickToCall').toggleClass('hide');
+    });
+});
+
+window.addEventListener("load", function() {
+    // Check time and update the button's state every second.
+    setInterval(updateSubmitButtonState, 1000);
+  }, false);
+
+  function updateSubmitButtonState() {
+    var currentTime = new Date();
+    var days = currentTime.getDay();
+    var hours = currentTime.getHours();
+    var minutes = currentTime.getMinutes();
+    
+    var newButton = document.getElementById("clickToCall");
+    
+    //sunday - thursday 08:00-19:00 + friday 08-13
+    if ( ((days<= 4 && hours >=8 && minutes >= 0) && (days<=4 && hours >=19 && minutes>=00)) || (days== 5 && hours >=8 && minutes >= 0) && (days==5 && hours >=13 && minutes>=00) ){
+        newButton.style.display = "none";
+        //console.log('button is disabled');
+    } else {
+        newButton.style.display = "block";
+        //console.log('button is Enabled');
+        }
+    }
+
+</script>
+
+
+</script>
+
+
+
+</html>
