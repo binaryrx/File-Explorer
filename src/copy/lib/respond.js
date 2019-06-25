@@ -5,6 +5,7 @@ const fs = require('fs');
 //file imports
 const buildBreadcrumb = require('./breadcrumb');
 const buildMainContent = require('./mainContent');
+const getMimeType = require('./getMimeType');
 
 
 //static base path : location of your static foler
@@ -77,6 +78,8 @@ const respond = (request,response) => {
                 return response.end();
             }
 
+            //it is not a directory and not a file either
+                            //send: 401: Access Denied
             if(!stats.isFile()){
                 response.statusCode = 401;
                 response.write('401: Access Denied!');
@@ -85,16 +88,32 @@ const respond = (request,response) => {
             }
                
 
-            //it is not a directory and not a file either
-                //send: 401: Access Denied
+            
 
-            //It is a file:
-                //Let's get the file extension
-                //get the file mime type and add it to the response header
-                //get the file size and add it the response header
-                //pdf file? -> display in browser
-                //audio/video file? ->stram in rangers.
-                //alll other files stream in a normal way
+        //It is a file:
+            //Let's get the file extension
+            const fileDetails = {};
+            fileDetails.extensionName = path.extname(fullStaticPath);
+            console.log(fileDetails.extensionName);
+            
+            //get the file mime type and add it to the response header
+            //get the file size and add it the response header
+            getMimeType(fileDetails.extensionName)
+                .then(mime =>{
+                    console.log(mime);
+                    response.statusCode = 200;
+                    response.write(`StatusCode in getMimeTypeFunction: ${mime}`)
+                    return response.end();
+                })
+                .catch(e =>{
+                    response.statusCode = 500;
+                    response.write('500: Internal Server Error!')
+                    console.log(`Promise Error: ${e}`);
+                    return response.end();
+                });
+            //pdf file? -> display in browser
+            //audio/video file? ->stram in rangers.
+            //alll other files stream in a normal way
 
 };
 
