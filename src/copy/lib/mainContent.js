@@ -21,15 +21,20 @@ const buildMainContent = (fullStaticPath,pathname) => {
     
 
     //get the follwing elements for each item:
-    items.forEach(item =>{
+    items.forEach(item => {
+
+        //store itemDetails in an object
+        let itemDetails = {};
+
+        //name
+        itemDetails.name = item;
+        
         //link
         const link = path.join(pathname,item)
-        
-        //icon
-        let itemDetails = {};
-        let icon, stats;
+
         //get stats of the item
         const itemFullStaticPath = path.join(fullStaticPath,item);
+
         try{
             itemDetails.stats = fs.statSync(itemFullStaticPath); 
         }catch(e){
@@ -47,12 +52,18 @@ const buildMainContent = (fullStaticPath,pathname) => {
             // [itemDetails.size,itemDetails.sizeBytes] = calculateFileSize();
         }
 
+        //When was the file last change(Unix timestamp)
+        itemDetails.timestamp = parseInt(itemDetails.stats.mtimeMs);
+        
+        //convert timestamp to date
+        itemDetails.date = new Date (itemDetails.timestamp);
+        itemDetails.date = itemDetails.date.toLocaleString();//to correct format
+
         mainContent += `
-        <tr>
+        <tr data-name="${itemDetails.name}" data-size="${itemDetails.sizeBytes}" data-time="${itemDetails.timestamp}">
             <td>${itemDetails.icon}<a href="${link}">${item}</a></td>
             <td>${itemDetails.size}</td>
-            <td>23/06/2019,
-            10:30:19 PM</td>
+            <td>${itemDetails.date}</td>
         </tr>`;
     });
         //name
