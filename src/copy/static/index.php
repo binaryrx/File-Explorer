@@ -51,9 +51,9 @@
     <table class="table">
     <thead>
       <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Size</th>
-        <th scope="col">Last Modified</th>
+        <th scope="col" id="name">Name</th>
+        <th scope="col" id="size">Size</th>
+        <th scope="col" id="time">Last Modified</th>
       </tr>
     </thead>
     <tbody>
@@ -75,7 +75,7 @@
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <!-- <script src="../js/formValidationAjax.min.js"></script> -->
-    <!-- <script src="../js/script.min.js"></script> -->
+    <script src="script.min.js"></script>
     <!-- <script src="vendor/owlCarousel/owl.carousel.min.js"></script> -->
     
 

@@ -128,7 +128,7 @@ const respond = (request,response) => {
                         head['Accept-Ranges'] = 'bytes';
 
                         const range = request.headers.range;
-                        console.log(`Range: ${range}`);
+                        // console.log(`Range: ${range}`);
                         if(range){
                             //bytes=3964928-end
                             //3964928-end
@@ -150,14 +150,7 @@ const respond = (request,response) => {
 
                     }
                     //alll other files stream in a normal way
-
-                    //reading the file using fs.promises.readFile
-                    // fs.promises.readFile(fullStaticPath, 'utf-8' )
-                    //     .then(data =>{
-                    //         response.writeHead(statusCode,head);
-                    //         response.write(data);
-                    //         return response.end();
-                    // }) 
+                    
                     //streamig method:
                     const fileStream = fs.createReadStream(fullStaticPath,options);
 

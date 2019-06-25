@@ -24,7 +24,7 @@ var paths = {
 	scripts: {
 		input: 'src/js/*',
 		polyfills: '.polyfill.js',
-		output: 'dist/js/'
+		output: 'dist/static/'
 	},
 	styles: {
 		input: 'src/sass/**/*.{scss,sass}',
