@@ -58,21 +58,40 @@ if(option ==='down'){
 //fill the table body with items
 const fill_table_body = items => {
   const content = items.map(element => element.html).join('');
-  console.log(content); 
+  // console.log(content); 
   $('tbody').html(content);
 };
+sortStatus.name = 'up';
+sort_name(items,'up');
 
 //event listeners
-document.getElementById('name').addEventListener('click', ()=>{
-  if(['none','down'].includes(sortStatus.name)){
-    //sort in ascending order
-    sortStatus.name = 'up';
-    sort_name(items,'up');
-    console.log(sortStatus);
-  }else if(sortStatus.name === 'up'){
-    sortStatus.name = 'down';
-    sort_name(items,'down');
-    console.log(sortStatus);
-  }
-  fill_table_body(items);
+document.getElementById('table_head_row').addEventListener('click', event => {
+    if(event.target){
+      if(event.target.id === 'name'){
+        //clear icons
+        $('ion-icon').remove();
+        if(['none','down'].includes(sortStatus.name)){
+          //sort in ascending order
+          sortStatus.name = 'up';
+          sort_name(items,'up');
+          //add icon 
+          // event.target.innerHTML -= ' Down';
+          event.target.innerHTML += ' <ion-icon name="arrow-dropup"></ion-icon>';
+          
+          
+        }else if(sortStatus.name === 'up'){
+          sortStatus.name = 'down';
+          sort_name(items,'down');
+          //add icon
+          // event.target.innerHTML -= ' Up';
+          event.target.innerHTML += ' <ion-icon name="arrow-dropdown"></ion-icon>';
+          
+        }
+        fill_table_body(items);
+      }
+    }
 });
+
+// document.getElementById('name').addEventListener('click', ()=>{
+  
+// });
