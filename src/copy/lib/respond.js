@@ -61,7 +61,10 @@ const respond = (request,response) => {
                 let pathElements = pathname.split('/').reverse();
                 pathElements = pathElements.filter(element => element !== '');//filter out empty strings
 
-                const folderName = pathElements[0];
+                let folderName = pathElements[0];
+                if(folderName === undefined){
+                    folderName = 'Home';
+                }
                 
                 //build breadcrumbs
                 const breadcrumb = buildBreadcrumb(pathname);
@@ -150,7 +153,7 @@ const respond = (request,response) => {
 
                     }
                     //alll other files stream in a normal way
-                    
+
                     //streamig method:
                     const fileStream = fs.createReadStream(fullStaticPath,options);
 

@@ -18,7 +18,14 @@ const buildMainContent = (fullStaticPath,pathname) => {
         console.log(`readdirSync error occoured: ${e}`);
         return `<div class="alert alert-danger">Internal Server Error</div>`;
     }
+    //unwanted files arr
+    let unwanted = ['main.css','main.min.css','script.js','script.min.js','formValidationAjax.js','formValidationAjax.min.js','index.php']
     
+    //Home directory, remove only from there
+    if(pathname === '/'){
+        items = items.filter( element => !unwanted.includes(element));
+    }
+
 
     //get the follwing elements for each item:
     items.forEach(item => {
@@ -61,7 +68,7 @@ const buildMainContent = (fullStaticPath,pathname) => {
 
         mainContent += `
         <tr data-name="${itemDetails.name}" data-size="${itemDetails.sizeBytes}" data-time="${itemDetails.timestamp}">
-            <td><a href="${link}">${itemDetails.icon}${item}</a></td>
+            <td><a href="${link}" target="${itemDetails.stats.isFile() ? '_blank' : ''}">${itemDetails.icon}${item}</a></td>
             <td>${itemDetails.size}</td>
             <td>${itemDetails.date}</td>
         </tr>`;
